@@ -1,0 +1,12 @@
+<div class="content">
+    <md-input-container class="input-container">
+        <label>Название</label>
+        <input type="text" required ng-model="name">
+    </md-input-container>
+    <md-input-container class="input-container" ng-click="openDialog($event)">
+        <label>Иконка</label>
+        <input type="text" required ng-model="icon" disabled />
+        <md-icon class="category-input-icon" ng-show="icon" ng-model="icon" md-svg-src="img/categoryIcons/{{icon}}.svg"></md-icon>
+    </md-input-container>
+    <md-button class="button" ng-click="save()">Сохранить</md-button>
+</div>

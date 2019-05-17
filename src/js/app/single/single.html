@@ -1,0 +1,27 @@
+<md-card>
+    <md-card-content>
+        <div class="content_line">
+            <div>Дата транзакции:</div>
+            <div>{{single.data}}</div>
+        </div>
+        <div class="content_line">
+            <div>Время транзакции:</div>
+            <div>{{single.time}}</div>
+        </div>
+        <div class="content_line">
+            <div>Сумма:</div>
+            <div>{{single.total}} руб.</div>
+        </div>
+        <div class="content_line">
+            <div>Категория:</div>
+            <div>
+                <md-icon class="content_line_icon" md-svg-src="img/categoryIcons/{{icon}}.svg"></md-icon>{{single.category}}
+            </div>
+        </div>
+        <div class="content_line">
+            <div>Примечание:</div>
+            <div>{{single.info}}</div>
+        </div>
+        <md-button class="button" ng-controller="removeController" ng-click="remove($event)">Удалить транзакцию</md-button>
+    </md-card-content>
+</md-card>

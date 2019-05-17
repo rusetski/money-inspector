@@ -1,0 +1,48 @@
+<md-tabs md-dynamic-height class="tabs">
+    <md-tab label="Операции">
+        <div class="content">
+            <form ng-submit="submitOperation()">
+                <md-input-container class="input-container">
+                    <label>Сумма</label>
+                    <input type="text" required ng-model="total" />
+                </md-input-container>
+                <md-input-container class="input-container">
+                    <md-select placeholder="Добавить в" ng-model="selectedOperation">
+                        <md-option ng-value="operation" ng-repeat="operation in operations">{{ operation.name }}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="input-container">
+                    <md-select placeholder="Категория" ng-model="selectedCategory">
+                        <md-option ng-value="category" ng-repeat="category in categories | filter: selectedOperation.name track by category.id">{{ category.name }}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="input-container">
+                    <label>Коментарий</label>
+                    <input type="text" ng-model="info" />
+                </md-input-container>
+                <md-button type="submit" class="button">Добавить</md-button>
+            </form>
+        </div>
+    </md-tab>
+    <md-tab label="Категории">
+        <div class="content">
+            <form ng-submit="submitCategory()">
+                <md-input-container class="input-container">
+                    <label>Название категории</label>
+                    <input type="text" required ng-model="categoryName">
+                </md-input-container>
+                <md-input-container class="input-container">
+                    <md-select placeholder="Добавить в" ng-model="selectedOperation">
+                        <md-option ng-value="operation" ng-repeat="operation in operations">{{ operation.name }}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="input-container" ng-click="openDialog($event)">
+                    <label>Выбирите иконку</label>
+                    <input type="text" required ng-model="categoryIcon" disabled />
+                    <md-icon class="category-input-icon" ng-show="categoryIcon" ng-model="categoryIcon" md-svg-src="img/categoryIcons/{{categoryIcon}}.svg"></md-icon>
+                </md-input-container>
+                <md-button type="submit" class="button">Добавить</md-button>
+            </form>
+        </div>
+    </md-tab>
+</md-tabs>

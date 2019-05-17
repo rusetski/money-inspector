@@ -1,0 +1,49 @@
+<md-card ng-controller="operationsPerMonthController">
+    <md-card-header class="last-tran-head">
+        <md-icon class="card-header-icon" md-svg-src="img/icons/calendar.svg" aria-label="baseline-add"></md-icon>
+        <md-card-title>
+            <md-card-title-text class="md-headline">За текущий месяц:</md-card-title-text>
+        </md-card-title>
+    </md-card-header>
+    <md-card-content class="total">
+        <div class="total_card">
+            <div class="total_card_caption">Расходы:</div>
+            <div class="total_card_value">{{ sum.costsSum }}</div>
+        </div>
+        <div class="total_card">
+            <div class="total_card_caption">Доходы:</div>
+            <div class="total_card_value">{{ sum.incomesSum }}</div>
+        </div>
+        <div class="total_card">
+            <div class="total_card_caption">Баланс:</div>
+            <div class="total_card_value">{{ sum.balance() }}</div>
+        </div>
+    </md-card-content>
+</md-card>
+<md-card>
+    <md-card-header class="last-tran-head">
+        <md-icon class="card-header-icon" md-svg-src="img/icons/baseline-account_balance_wallet-24px.svg" aria-label="baseline-add"></md-icon>
+        <md-card-title>
+            <md-card-title-text class="md-headline">Последние транзакции:</md-card-title-text>
+        </md-card-title>
+    </md-card-header>
+    <md-card-content class="last-tran-content">
+        <div class="single-operation" ng-repeat="costs in operation | limitTo: 10 track by costs.id">
+            <md-button ui-sref="single({id:{{costs.id}}})">
+                <div>
+                    <md-icon md-svg-src="img/categoryIcons/{{icon(costs.category)}}.svg" class="category-icon"></md-icon>
+                    <span>{{ costs.category  }}</span>
+                </div>
+                <div>
+                    <span ng-if="costs.type == 'Доходы'">+</span>
+                    <span ng-if="costs.type == 'Расходы'">-</span>
+                    {{ costs.total  }} руб
+                </div>
+            </md-button>
+        </div>
+    </md-card-content>
+    <md-button ui-sref="operations" ng-if="operation.length > 5">Смотреть все</md-button>
+</md-card>
+<md-button class="md-fab md-fab-bottom-right md-fab-no-scroll" ui-sref="add">
+    <md-icon md-svg-src="img/icons/baseline-add-24px.svg" aria-label="baseline-add"></md-icon>
+</md-button>

@@ -1,0 +1,66 @@
+<md-tabs md-dynamic-height class="tabs">
+    <md-tab label="Расходы">
+        <div>
+            <md-card ng-repeat="item in costData | orderBy: '-percent'">
+                <md-card-header class="last-tran-head">
+                    <md-icon class="card-header-icon" md-svg-src="img/categoryIcons/{{getCategory(item.name, 'Расходы').icon}}.svg"></md-icon>
+                    <md-card-title>{{item.name}}</md-card-title>
+                    <md-menu md-position-mode="target-right target">
+                        <md-button class="md-icon-button card-more-button" aria-label="icon-button" ng-click="$mdMenu.open(event)">
+                            <md-icon md-svg-src="img/icons/more.svg"></md-icon>
+                        </md-button>
+                        <md-menu-content>
+                            <md-menu-item>
+                                <md-button ui-sref="editcategory({id:{{getCategory(item.name, 'Расходы').id}}})">Редактировать</md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-controller="removeCategoryController" ng-click="removeCategory($event, item.name, 'Расходы')">Удалить</md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                </md-card-header>
+                <md-card-content class="last-tran-content">
+                    <div ng-show="operationLenght(item.name, 'Расходы')">
+                        <div class="percent">{{item.percent}}%</div>
+                        <div class="category_line">
+                            <div class="progress" style="width: {{item.percent}}%;"></div>
+                        </div>
+                    </div>
+                    <div ng-hide="operationLenght(item.name, 'Расходы')">Транзакции отсутствуют</div>
+                </md-card-content>
+            </md-card>
+        </div>
+    </md-tab>
+    <md-tab label="Доходы">
+        <div>
+            <md-card ng-repeat="item in incomesData | orderBy: '-percent'">
+                <md-card-header class="last-tran-head">
+                    <md-icon md-svg-src="img/categoryIcons/{{getCategory(item.name, 'Доходы').icon}}.svg"></md-icon>
+                    <md-card-title>{{item.name}}</md-card-title>
+                    <md-menu md-position-mode="target-right target">
+                        <md-button class="md-icon-button card-more-button" aria-label="icon-button" ng-click="$mdMenu.open(event)">
+                            <md-icon md-svg-src="img/icons/more.svg"></md-icon>
+                        </md-button>
+                        <md-menu-content>
+                            <md-menu-item>
+                                <md-button ui-sref="editcategory({id:{{getCategory(item.name, 'Доходы').id}}})">Редактировать</md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-controller="removeCategoryController" ng-click="removeCategory($event, item.name, 'Доходы')">Удалить</md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                </md-card-header>
+                <md-card-content class="last-tran-content">
+                    <div ng-show="operationLenght(item.name, 'Доходы')">
+                        <div class="percent">{{item.percent}}%</div>
+                        <div class="category_line">
+                            <div class="progress" style="width: {{item.percent}}%;"></div>
+                        </div>
+                    </div>
+                    <div ng-hide="operationLenght(item.name, 'Доходы')">Транзакции отсутствуют</div>
+                </md-card-content>
+            </md-card>
+        </div>
+    </md-tab>
+</md-tabs>

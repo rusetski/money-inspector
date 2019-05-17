@@ -1,0 +1,25 @@
+<md-card>
+    <md-card-header>
+        <md-datepicker ng-model="changeDate" ng-change="onFilterChanged()" md-placeholder="Выберите дату" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+        <span flex></span>
+        <md-button class="md-icon-button">
+            <md-icon md-svg-src="img/icons/filter.svg"></md-icon>
+        </md-button>
+    </md-card-header>
+    <md-card-content class="last-tran-content">
+        <div class="single-operation" ng-repeat="costs in operation | filter: changedDate | limitTo: limit track by costs.id">
+            <md-button ui-sref="single({id:{{costs.id}}})">
+                <div>
+                    <md-icon md-svg-src="img/categoryIcons/{{icon(costs.category)}}.svg" class="category-icon"></md-icon>
+                    <span>{{ costs.category  }}</span>
+                </div>
+                <div>
+                    <span ng-if="costs.type == 'Доходы'">+</span>
+                    <span ng-if="costs.type == 'Расходы'">-</span>
+                    {{ costs.total  }} руб
+                </div>
+            </md-button>
+        </div>
+    </md-card-content>
+    <md-button ng-hide="(operation|filter:changedDate).length < limit" ng-click="more()">Еще</md-button>
+</md-card>

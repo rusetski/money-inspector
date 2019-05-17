@@ -1,0 +1,46 @@
+<md-tabs md-dynamic-height class="tabs">
+    <md-tab label="Расходы">
+        <md-card>
+            <md-card-content>
+                <div class="piechart">
+                    <canvas id="piechartCosts" ng-init="piechartCosts()"></canvas>
+                </div>
+            </md-card-content>
+        </md-card>
+        <md-card>
+            <md-card-content>
+                <div class="piechart_info" ng-repeat="item in costData | orderBy: '-percent'">
+                    <div class="category_block">
+                        <div class="square" style="background-color: {{item.color}};"></div>
+                        <div class="category_name">{{item.name}}</div>
+                    </div>
+                    <div>
+                        {{item.percent}}%
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+    </md-tab>
+    <md-tab label="Доходы">
+        <md-card>
+            <md-card-content>
+                <div class="piechart">
+                    <canvas id="piechartIncomes" ng-init="piechartIncomes()"></canvas>
+                </div>
+            </md-card-content>
+        </md-card>
+        <md-card>
+            <md-card-content>
+                <div class="piechart_info" ng-repeat="item in incomesData | orderBy: '-percent'">
+                    <div class="category_block">
+                        <div class="square" style="background-color: {{item.color}};"></div>
+                        <div class="category_name">{{item.name}}</div>
+                    </div>
+                    <div>
+                        {{item.percent}}%
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+    </md-tab>
+</md-tabs>

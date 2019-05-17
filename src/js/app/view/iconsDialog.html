@@ -1,0 +1,19 @@
+<md-dialog aria-label="categoryIcons">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+           <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-src="img/icons/close.svg" aria-label="close"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <div class="icons-block">
+               <md-button class="md-icon-button" aria-label="icon" ng-repeat="icon in icons" ng-click="selectedIcon({icon})">
+                   <md-icon md-svg-src="img/categoryIcons/{{icon}}.svg"></md-icon>
+               </md-button>
+            </div>
+        </div>
+    </md-dialog-content>
+</md-dialog>
